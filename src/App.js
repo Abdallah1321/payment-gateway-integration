@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import NavBar from "./components/NavBar.jsx";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 function App() {
+  const initialOptions = {
+    "client-id":
+      "AeHkStbXnsaiYPgBU_QWIqPUK_ZzLXVBUHJP1F-tgMLvnAniBWS-TpLyrVl_WWUTMrmHWhRi-5lFeSn0",
+    currency: "USD",
+    intent: "capture",
+    //"data-client-token": "abc123xyz=="
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PayPalScriptProvider options={initialOptions}>
+      <div className="App">
+        <header className="App-header">
+          <NavBar />
+          <PayPalButtons />
+        </header>
+      </div>
+    </PayPalScriptProvider>
   );
 }
 
